@@ -1,0 +1,71 @@
+<!--
+  Nameplate under a world mascot. One asset, placed three times; src/menu.ts
+  fills the per-instance text, so the copy here is only the first-frame default.
+
+    plate-num, plate-state, plate-name, plate-tag, plate-root
+-->
+<style>
+  .plate {
+    flex-direction: column;
+    width: 240px;
+    height: 104px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 14px;
+    padding-right: 14px;
+    background-color: #101a2b;
+    border-width: 1px;
+    border-color: #2b3f5f;
+    border-radius: 14px;
+  }
+
+  .top {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 212px;
+  }
+
+  .num {
+    color: #7c8fa8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .state {
+    color: #5fd3c4;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background-color: #0f2a2e;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 5px;
+  }
+
+  .name {
+    color: #eef3fa;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  .tag {
+    color: #8ea3bf;
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+</style>
+
+<div class="plate" id="plate-root">
+  <div class="top">
+    <div class="num" id="plate-num">01</div>
+    <div class="state" id="plate-state">PLAY</div>
+  </div>
+  <div class="name" id="plate-name">FRACTURED LAWS</div>
+  <div class="tag" id="plate-tag">CLASSICAL MECHANICS</div>
+</div>

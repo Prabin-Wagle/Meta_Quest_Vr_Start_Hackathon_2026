@@ -1,0 +1,347 @@
+<!--
+  NEXUS platform menu: three online worlds, one detail strip for the selected
+  world, and a roadmap of planned worlds off to the side.
+
+  Element IDs addressed by src/menu.ts:
+    detail-index, detail-title, detail-body, progress, action-btn, status-msg
+    formula-fracture, formula-earth, formula-ai   (exactly one is visible)
+    xr-button, exit-button
+    roadmap-list
+-->
+<style>
+  .root {
+    flex-direction: row;
+    width: 1240px;
+    padding-top: 28px;
+    padding-bottom: 24px;
+    padding-left: 26px;
+    padding-right: 26px;
+    background-color: #101a2b;
+    border-width: 1px;
+    border-color: #2b3f5f;
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  /* ---- LEFT COLUMN: brand + selected world detail ---- */
+  .main {
+    flex-direction: column;
+    width: 860px;
+  }
+
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    height: 92px;
+  }
+
+  .brand {
+    flex-direction: column;
+    width: 600px;
+  }
+
+  .eyebrow {
+    color: #5fd3c4;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+  }
+
+  .title {
+    color: #f2f6fd;
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .subtitle {
+    color: #9fb2ca;
+    font-size: 14px;
+    line-height: 1.35;
+    margin-top: 4px;
+    width: 580px;
+  }
+
+  .divider {
+    height: 1px;
+    width: 860px;
+    background-color: #22334d;
+    margin-top: 16px;
+    margin-bottom: 14px;
+  }
+
+  .detail {
+    flex-direction: row;
+    justify-content: space-between;
+    height: 200px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 18px;
+    padding-right: 18px;
+    background-color: #0d1727;
+    border-width: 1px;
+    border-color: #1e2c42;
+    border-radius: 16px;
+  }
+
+  .detail-left {
+    flex-direction: column;
+    width: 530px;
+  }
+
+  .detail-eyebrow {
+    color: #5fd3c4;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+
+  .detail-title {
+    color: #f2f6fd;
+    font-size: 34px;
+    font-weight: 700;
+  }
+
+  .detail-body {
+    color: #9fb2ca;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-top: 3px;
+    width: 530px;
+  }
+
+  .formula-block {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .formula {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  .fx {
+    color: #f2c14e;
+    font-size: 19px;
+    letter-spacing: 2px;
+  }
+
+  .sup {
+    color: #f2c14e;
+    font-size: 12px;
+    letter-spacing: 1px;
+    transform-translate-y: -9px;
+  }
+
+  .fx-space {
+    width: 26px;
+  }
+
+  .formula-note {
+    color: #6f829c;
+    font-size: 10px;
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+
+  .detail-right {
+    flex-direction: column;
+    width: 280px;
+    justify-content: flex-start;
+  }
+
+  .progress {
+    color: #8ea3bf;
+    font-size: 11px;
+    text-align: right;
+    width: 280px;
+  }
+
+  .action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 280px;
+    height: 52px;
+    margin-top: 14px;
+    border-radius: 12px;
+    background-color: #5fd3c4;
+    color: #06131a;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .action:hover {
+    background-color: #7ceadb;
+  }
+
+  .status {
+    color: #7f93ad;
+    font-size: 11px;
+    line-height: 1.35;
+    text-align: right;
+    width: 280px;
+    margin-top: 10px;
+  }
+
+  .footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 34px;
+    margin-top: 14px;
+  }
+
+  .hint {
+    color: #6f829c;
+    font-size: 11px;
+    width: 600px;
+  }
+
+  .footer-buttons {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .ghost {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 124px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: #16233a;
+    border-width: 1px;
+    border-color: #2b3d58;
+    color: #dbe6f5;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* ---- RIGHT COLUMN: future plan / roadmap ---- */
+  .roadmap {
+    flex-direction: column;
+    width: 300px;
+    margin-left: 28px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 18px;
+    padding-right: 18px;
+    background-color: #0d1727;
+    border-width: 1px;
+    border-color: #1e2c42;
+    border-radius: 16px;
+  }
+
+  .roadmap-header {
+    color: #5fd3c4;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+  }
+
+  .roadmap-title {
+    color: #f2f6fd;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 3px;
+  }
+
+  .roadmap-desc {
+    color: #9fb2ca;
+    font-size: 12px;
+    line-height: 1.4;
+    margin-top: 3px;
+  }
+
+  .roadmap-divider {
+    height: 1px;
+    width: 264px;
+    background-color: #22334d;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+  .roadmap-list {
+    color: #b9a67e;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.9;
+  }
+
+  .roadmap-note {
+    color: #5c6e86;
+    font-size: 10px;
+    margin-top: 8px;
+    line-height: 1.35;
+  }
+</style>
+
+<div id="menu-root" class="root">
+  <!-- Left: brand + detail -->
+  <div class="main">
+    <div class="header">
+      <div class="brand">
+        <div class="eyebrow">NEXUS // SPATIAL LEARNING PLATFORM</div>
+        <div class="title">CHOOSE A WORLD</div>
+        <div class="subtitle">Three worlds are online. Aim at a character below and press your trigger to load it.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="detail">
+      <div class="detail-left">
+        <div class="detail-eyebrow" id="detail-index">WORLD 01 // CLASSICAL MECHANICS</div>
+        <div class="detail-title" id="detail-title">Fractured Laws</div>
+        <div class="detail-body" id="detail-body">A fracture broke six laws of physics across six floating islands. Rebuild every machine, collect the Law Cores and find out who broke them on purpose.</div>
+        <div class="formula-block" id="formula-fracture">
+          <div class="formula">
+            <span class="fx">F = m a</span>
+            <span class="fx-space"></span>
+            <span class="fx">v</span><span class="sup">2</span><span class="fx"> = GM / r</span>
+          </div>
+          <div class="formula-note">SECOND LAW OF MOTION / CIRCULAR ORBIT</div>
+        </div>
+        <div class="formula-block" id="formula-earth" style="display: none">
+          <div class="formula">
+            <span class="fx">E = P t</span>
+          </div>
+          <div class="formula-note">POWER OVER TIME / CLEAN ENERGY BUDGET</div>
+        </div>
+        <div class="formula-block" id="formula-ai" style="display: none">
+          <div class="formula">
+            <span class="fx">y = W x + b</span>
+          </div>
+          <div class="formula-note">ONE NEURON / WEIGHTED SUM</div>
+        </div>
+      </div>
+      <div class="detail-right">
+        <div class="progress" id="progress">6 islands / 0 of 6 Law Cores</div>
+        <div class="action" id="action-btn">Enter World</div>
+        <div class="status" id="status-msg">Every machine can be fixed more than one way.</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="hint">Press Why? on any object and your apprentice explains the law in play. Fewer parts means more stars.</div>
+      <div class="footer-buttons">
+        <div class="ghost" id="xr-button">Enter VR</div>
+        <div class="ghost" id="exit-button" style="display: none">Exit VR</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: roadmap / future plan -->
+  <div class="roadmap">
+    <div class="roadmap-header">COMING NEXT</div>
+    <div class="roadmap-title">The Roadmap</div>
+    <div class="roadmap-desc">More worlds are planned after the three launch worlds are in.</div>
+    <div class="roadmap-divider"></div>
+    <div class="roadmap-list" id="roadmap-list">BIO — cells &amp; systems  •  SOLAR — planets &amp; orbit  •  CHEM — reactions &amp; bonds</div>
+    <div class="roadmap-note">Each world is built on the same platform. The forge never closes.</div>
+  </div>
+</div>

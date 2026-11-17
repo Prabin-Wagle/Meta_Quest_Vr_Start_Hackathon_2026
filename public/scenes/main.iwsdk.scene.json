@@ -3,475 +3,192 @@
   "units": "meters",
   "components": {
     "com.iwsdk.components.DomeGradient": {
-      "sky": [0.843, 0.796, 0.882, 1],
-      "equator": [0.808, 0.855, 0.91, 1],
-      "ground": [0.902, 0.855, 0.82, 1],
-      "elevationDeg": 24,
-      "azimuthDeg": -31,
-      "dither": true
+      "azimuthDeg": 0,
+      "dither": true,
+      "elevationDeg": 18,
+      "equator": [0.055, 0.075, 0.125, 1],
+      "ground": [0.012, 0.016, 0.03, 1],
+      "sky": [0.024, 0.031, 0.062, 1]
     },
     "com.iwsdk.components.IBLGradient": {
-      "sky": [0.72, 0.7, 0.8, 1],
-      "equator": [0.78, 0.78, 0.84, 1],
-      "ground": [0.5, 0.52, 0.58, 1],
-      "intensity": 0.2025
+      "equator": [0.08, 0.1, 0.16, 1],
+      "ground": [0.02, 0.03, 0.05, 1],
+      "intensity": 0.6,
+      "sky": [0.16, 0.2, 0.3, 1]
     }
   },
   "environment": {
-    "toneMapping": "aces",
-    "exposure": 1.2,
+    "exposure": 1.15,
+    "shadowMapType": "pcf",
     "shadows": true,
-    "shadowMapType": "pcf"
+    "toneMapping": "aces"
   },
   "resources": {},
   "nodes": [
     {
-      "id": "studio-floor",
-      "name": "Studio Floor",
-      "framingRole": "support",
+      "id": "menu-platform",
+      "name": "Exam Platform",
       "content": {
         "type": "asset",
-        "asset": "studio-floor",
+        "asset": "menu-platform",
         "receiveShadow": true
       },
       "components": {
         "LocomotionEnvironment": {},
-        "DomeFade": {
-          "start": 4,
-          "end": 10
-        }
+        "DomeFade": { "start": 5, "end": 13 }
       }
     },
     {
-      "id": "stage",
-      "name": "Stage",
-      "framingRole": "support",
-      "content": {
-        "type": "asset",
-        "asset": "stage",
-        "castShadow": true,
-        "receiveShadow": true
-      },
-      "transform": {
-        "position": [0, 0, 0.1]
-      }
+      "id": "void-shard-01",
+      "content": { "type": "asset", "asset": "void-shard" },
+      "transform": { "position": [-3.0, 2.45, -4.4] }
     },
     {
-      "id": "grab-plinth",
-      "name": "Grab Plinth",
-      "content": {
-        "type": "asset",
-        "asset": "plinth",
-        "castShadow": true,
-        "receiveShadow": true
-      },
-      "transform": {
-        "position": [-0.9543, 0.035, -1.1214],
-        "rotationDeg": [0, 30, 0]
-      },
-      "children": [
-        {
-          "id": "grab-plinth-contact",
-          "name": "Contact Shadow",
-          "transform": {
-            "position": [0, 0.002, 0]
-          },
-          "components": {
-            "ContactShadow": {
-              "size": [0.8, 0.8],
-              "height": 0.0016
-            }
-          }
-        },
-        {
-          "id": "graphite-cube",
-          "name": "Graphite Cube",
-          "content": {
-            "type": "asset",
-            "asset": "graphite-cube",
-            "castShadow": true,
-            "receiveShadow": true
-          },
-          "transform": {
-            "position": [-0.25, 0.998, -0.03],
-            "rotationDeg": [0, 20, 0],
-            "scale": 1.2
-          },
-          "components": {
-            "RayInteractable": {},
-            "DistanceGrabbable": {
-              "movementMode": "MoveFromTarget"
-            }
-          }
-        },
-        {
-          "id": "graphite-cube-contact",
-          "name": "Contact Shadow",
-          "transform": {
-            "position": [-0.25, 0.921, -0.03]
-          },
-          "components": {
-            "ContactShadow": {
-              "size": [0.26, 0.26],
-              "height": 0.00052
-            }
-          }
-        },
-        {
-          "id": "graphite-gem",
-          "name": "Graphite Gem",
-          "content": {
-            "type": "asset",
-            "asset": "graphite-gem",
-            "castShadow": true,
-            "receiveShadow": true
-          },
-          "transform": {
-            "position": [0, 1.006, -0.03],
-            "rotationDeg": [15, 0, 10],
-            "scale": 1.2
-          },
-          "components": {
-            "RayInteractable": {},
-            "DistanceGrabbable": {
-              "movementMode": "MoveFromTarget"
-            }
-          }
-        },
-        {
-          "id": "graphite-gem-contact",
-          "name": "Contact Shadow",
-          "transform": {
-            "position": [0, 0.921, -0.03]
-          },
-          "components": {
-            "ContactShadow": {
-              "size": [0.24, 0.24],
-              "height": 0.00048
-            }
-          }
-        },
-        {
-          "id": "graphite-knot",
-          "name": "Graphite Knot",
-          "content": {
-            "type": "asset",
-            "asset": "graphite-knot",
-            "castShadow": true,
-            "receiveShadow": true
-          },
-          "transform": {
-            "position": [0.25, 1.02, -0.03],
-            "rotationDeg": [0, -30, 0],
-            "scale": 0.74
-          },
-          "components": {
-            "RayInteractable": {},
-            "DistanceGrabbable": {
-              "movementMode": "MoveFromTarget"
-            }
-          }
-        },
-        {
-          "id": "graphite-knot-contact",
-          "name": "Contact Shadow",
-          "transform": {
-            "position": [0.25, 0.921, -0.03]
-          },
-          "components": {
-            "ContactShadow": {
-              "size": [0.26, 0.26],
-              "height": 0.00052
-            }
-          }
-        },
-        {
-          "id": "grab-label",
-          "name": "Grab Label",
-          "content": {
-            "type": "asset",
-            "asset": "label-grab"
-          },
-          "transform": {
-            "position": [0, 0.94, 0.358],
-            "rotationDeg": [-32, 0, 0],
-            "scale": 0.12
-          }
-        }
-      ]
+      "id": "void-shard-02",
+      "content": { "type": "asset", "asset": "void-shard" },
+      "transform": { "position": [-3.2, 3.6, -5.2] }
     },
     {
-      "id": "select-plinth",
-      "name": "Select Plinth",
-      "content": {
-        "type": "asset",
-        "asset": "plinth",
-        "castShadow": true,
-        "receiveShadow": true
-      },
-      "transform": {
-        "position": [0, 0.035, -1.5]
-      },
-      "children": [
-        {
-          "id": "select-plinth-contact",
-          "name": "Contact Shadow",
-          "transform": {
-            "position": [0, 0.002, 0]
-          },
-          "components": {
-            "ContactShadow": {
-              "size": [0.8, 0.8],
-              "height": 0.0016
-            }
-          }
-        },
-        {
-          "id": "robot",
-          "name": "Robot",
-          "metadata": {
-            "iwsdk.validation": {
-              "allowFloating": true
-            }
-          },
-          "content": {
-            "type": "asset",
-            "asset": "robot",
-            "castShadow": true
-          },
-          "transform": {
-            "position": [0, 1.2, -0.02],
-            "scale": 0.6
-          },
-          "components": {
-            "AudioSource": {
-              "src": "./audio/chime.mp3",
-              "maxInstances": 3,
-              "playbackMode": "fade-restart"
-            },
-            "RayInteractable": {},
-            "Robot": {}
-          }
-        },
-        {
-          "id": "robot-contact",
-          "name": "Contact Shadow",
-          "transform": {
-            "position": [0, 0.921, -0.02]
-          },
-          "components": {
-            "ContactShadow": {
-              "size": [0.37, 0.37],
-              "height": 0.00074
-            }
-          }
-        },
-        {
-          "id": "select-label",
-          "name": "Select Label",
-          "content": {
-            "type": "asset",
-            "asset": "label-select"
-          },
-          "transform": {
-            "position": [0, 0.94, 0.358],
-            "rotationDeg": [-32, 0, 0],
-            "scale": 0.12
-          }
-        }
-      ]
+      "id": "void-shard-03",
+      "content": { "type": "asset", "asset": "void-shard" },
+      "transform": { "position": [-3.55, 2.9, -6.0] }
     },
     {
-      "id": "spin-plinth",
-      "name": "Spin Plinth",
-      "content": {
-        "type": "asset",
-        "asset": "plinth",
-        "castShadow": true,
-        "receiveShadow": true
-      },
-      "transform": {
-        "position": [0.9543, 0.035, -1.1214],
-        "rotationDeg": [0, -30, 0]
-      },
-      "children": [
-        {
-          "id": "spin-plinth-contact",
-          "name": "Contact Shadow",
-          "transform": {
-            "position": [0, 0.002, 0]
-          },
-          "components": {
-            "ContactShadow": {
-              "size": [0.8, 0.8],
-              "height": 0.0016
-            }
-          }
-        },
-        {
-          "id": "graphite-ring",
-          "name": "Graphite Ring",
-          "content": {
-            "type": "asset",
-            "asset": "graphite-ring",
-            "castShadow": true,
-            "receiveShadow": true
-          },
-          "transform": {
-            "position": [0, 1.165, -0.02]
-          },
-          "components": {
-            "RayInteractable": {},
-            "DistanceGrabbable": {
-              "movementMode": "RotateAtSource"
-            }
-          }
-        },
-        {
-          "id": "graphite-ring-contact",
-          "name": "Contact Shadow",
-          "transform": {
-            "position": [0, 0.921, -0.02]
-          },
-          "components": {
-            "ContactShadow": {
-              "size": [0.4, 0.4],
-              "height": 0.0008
-            }
-          }
-        },
-        {
-          "id": "spin-label",
-          "name": "Spin Label",
-          "content": {
-            "type": "asset",
-            "asset": "label-spin"
-          },
-          "transform": {
-            "position": [0, 0.94, 0.358],
-            "rotationDeg": [-32, 0, 0],
-            "scale": 0.12
-          }
-        }
-      ]
+      "id": "void-shard-04",
+      "content": { "type": "asset", "asset": "void-shard" },
+      "transform": { "position": [-3.9, 1.9, -5.0] }
     },
     {
-      "id": "welcome-panel",
-      "name": "Welcome Panel",
-      "content": {
-        "type": "asset",
-        "asset": "welcome-panel"
-      },
-      "transform": {
-        "position": [0, 2.3, -5.15],
-        "rotationDeg": [-6, 0, 0],
-        "scale": 0.46
-      },
+      "id": "void-shard-05",
+      "content": { "type": "asset", "asset": "void-shard" },
+      "transform": { "position": [-2.95, 1.6, -4.0] }
+    },
+    {
+      "id": "void-shard-06",
+      "content": { "type": "asset", "asset": "void-shard" },
+      "transform": { "position": [3.0, 1.7, -4.0] }
+    },
+    {
+      "id": "void-shard-07",
+      "content": { "type": "asset", "asset": "void-shard" },
+      "transform": { "position": [3.9, 2.1, -5.0] }
+    },
+    {
+      "id": "void-shard-08",
+      "content": { "type": "asset", "asset": "void-shard" },
+      "transform": { "position": [3.55, 3.0, -6.0] }
+    },
+    {
+      "id": "void-shard-09",
+      "content": { "type": "asset", "asset": "void-shard" },
+      "transform": { "position": [3.2, 3.6, -5.2] }
+    },
+    {
+      "id": "void-shard-10",
+      "content": { "type": "asset", "asset": "void-shard" },
+      "transform": { "position": [3.0, 2.45, -4.4] }
+    },
+    {
+      "id": "pod-fracture",
+      "name": "World Pod - Fractured Laws",
+      "content": { "type": "asset", "asset": "character-fracture" },
       "components": {
-        "RayInteractable": {}
+        "RayInteractable": {},
+        "GamePod": { "gameIndex": 0 },
+        "ContactShadow": { "size": [0.95, 0.95] }
+      },
+      "transform": { "position": [-1.55, 0, -2.45] }
+    },
+    {
+      "id": "pod-earth",
+      "name": "World Pod - Save Earth",
+      "content": { "type": "asset", "asset": "character-earth" },
+      "components": {
+        "RayInteractable": {},
+        "GamePod": { "gameIndex": 1 },
+        "ContactShadow": { "size": [0.95, 0.95] }
+      },
+      "transform": { "position": [0, 0, -2.15] }
+    },
+    {
+      "id": "pod-ai",
+      "name": "World Pod - Learn AI",
+      "content": { "type": "asset", "asset": "character-ai" },
+      "components": {
+        "RayInteractable": {},
+        "GamePod": { "gameIndex": 2 },
+        "ContactShadow": { "size": [0.95, 0.95] }
+      },
+      "transform": { "position": [1.55, 0, -2.45] }
+    },
+    {
+      "id": "plate-fracture",
+      "name": "Nameplate - Fractured Laws",
+      "content": { "type": "asset", "asset": "pod-plate" },
+      "components": {
+        "RayInteractable": {},
+        "GamePod": { "gameIndex": 0 }
+      },
+      "transform": {
+        "position": [-1.55, 0.52, -1.93],
+        "rotationDeg": [-26, 0, 0],
+        "scale": 0.44
       }
     },
     {
-      "id": "gallery-set",
-      "name": "Gallery Set",
-      "content": {
-        "type": "asset",
-        "asset": "gallery-set",
-        "castShadow": true,
-        "receiveShadow": true
+      "id": "plate-earth",
+      "name": "Nameplate - Save Earth",
+      "content": { "type": "asset", "asset": "pod-plate" },
+      "components": {
+        "RayInteractable": {},
+        "GamePod": { "gameIndex": 1 }
       },
       "transform": {
-        "position": [-3.5562, 0, -4.0787],
-        "rotationDeg": [0, 35, 0]
-      },
-      "children": [
-        {
-          "id": "gallery-set-contact",
-          "name": "Contact Shadow",
-          "transform": {
-            "position": [0, 0.002, 0]
-          },
-          "components": {
-            "ContactShadow": {
-              "size": [1.9, 1]
-            }
-          }
-        },
-        {
-          "id": "gallery-vase-contact",
-          "name": "Contact Shadow",
-          "transform": {
-            "position": [-0.95, 0.002, -0.15]
-          },
-          "components": {
-            "ContactShadow": {
-              "size": [0.55, 0.55],
-              "height": 0.0011
-            }
-          }
-        }
-      ]
+        "position": [0, 0.52, -1.63],
+        "rotationDeg": [-26, 0, 0],
+        "scale": 0.44
+      }
     },
     {
-      "id": "sideboard-set",
-      "name": "Sideboard Set",
-      "content": {
-        "type": "asset",
-        "asset": "sideboard-set",
-        "castShadow": true,
-        "receiveShadow": true
+      "id": "plate-ai",
+      "name": "Nameplate - Learn AI",
+      "content": { "type": "asset", "asset": "pod-plate" },
+      "components": {
+        "RayInteractable": {},
+        "GamePod": { "gameIndex": 2 }
       },
       "transform": {
-        "position": [3.6709, 0, -4.2426],
-        "rotationDeg": [0, -35, 0]
+        "position": [1.55, 0.52, -1.93],
+        "rotationDeg": [-26, 0, 0],
+        "scale": 0.44
+      }
+    },
+    {
+      "id": "main-menu",
+      "name": "NEXUS Menu",
+      "content": { "type": "asset", "asset": "main-menu" },
+      "components": {
+        "RayInteractable": {},
+        "MenuSelection": { "selectedSlot": 0 }
       },
-      "children": [
-        {
-          "id": "sideboard-set-contact",
-          "name": "Contact Shadow",
-          "transform": {
-            "position": [0, 0.002, 0]
-          },
-          "components": {
-            "ContactShadow": {
-              "size": [2.3, 0.9]
-            }
-          }
-        },
-        {
-          "id": "floor-lamp-contact",
-          "name": "Contact Shadow",
-          "transform": {
-            "position": [1.1, 0.002, -0.08]
-          },
-          "components": {
-            "ContactShadow": {
-              "size": [0.45, 0.45],
-              "height": 0.0009
-            }
-          }
-        }
-      ]
+      "transform": { "position": [0, 2.28, -3.0], "scale": 0.47 }
     },
     {
       "id": "key-light",
       "name": "Key Light",
-      "transform": {
-        "position": [-2.3541, 11.2763, 1.762],
-        "rotationDeg": [-73.3982, -11.3134, 0]
-      },
+      "transform": { "position": [-3.2, 8, 2.6], "rotationDeg": [-62, -18, 0] },
       "components": {
         "DirectionalLight": {
-          "color": [1, 0.945, 0.87, 1],
-          "intensity": 2.3,
           "castShadow": true,
-          "shadowMapSize": "2048",
-          "shadowCameraSize": 8,
-          "shadowCameraNear": 2,
-          "shadowCameraFar": 24,
-          "shadowRadius": 7,
+          "color": [0.86, 0.9, 1, 1],
+          "intensity": 2.2,
           "shadowBias": -0.0004,
-          "shadowNormalBias": 0.02
+          "shadowCameraFar": 30,
+          "shadowCameraNear": 1,
+          "shadowCameraSize": 12,
+          "shadowMapSize": "2048",
+          "shadowNormalBias": 0.02,
+          "shadowRadius": 6
         }
       }
     },
@@ -480,11 +197,62 @@
       "name": "Fill Light",
       "components": {
         "HemisphereLight": {
-          "skyColor": [0.78, 0.83, 0.96, 1],
-          "groundColor": [0.592, 0.608, 0.651, 1],
-          "intensity": 1.15
+          "groundColor": [0.03, 0.04, 0.06, 1],
+          "intensity": 0.6,
+          "skyColor": [0.3, 0.36, 0.5, 1]
+        }
+      }
+    },
+    {
+      "id": "rim-light-teal",
+      "name": "Teal Rim Light",
+      "transform": { "position": [-2.6, 2.0, -1.6] },
+      "components": {
+        "PointLight": {
+          "color": [0.3, 0.85, 0.78, 1],
+          "decay": 2,
+          "distance": 9,
+          "intensity": 10
+        }
+      }
+    },
+    {
+      "id": "rim-light-warm",
+      "name": "Warm Rim Light",
+      "transform": { "position": [2.4, 2.2, -3.4] },
+      "components": {
+        "PointLight": {
+          "color": [1, 0.78, 0.5, 1],
+          "decay": 2,
+          "distance": 9,
+          "intensity": 8
+        }
+      }
+    },
+    {
+      "id": "rim-light-violet",
+      "name": "Violet Rim Light",
+      "transform": { "position": [1.9, 1.2, -1.1] },
+      "components": {
+        "PointLight": {
+          "color": [0.6, 0.45, 0.95, 1],
+          "decay": 2,
+          "distance": 8,
+          "intensity": 7
         }
       }
     }
-  ]
+  ],
+  "authoring": {
+    "views": [
+      {
+        "id": "hero",
+        "role": "hero",
+        "projection": "perspective",
+        "position": [0, 1.82, 1.05],
+        "target": [0, 1.58, -2.9],
+        "fov": 58
+      }
+    ]
+  }
 }
